@@ -1,5 +1,7 @@
-# LEAP Template Feedstock
-This repository serves as template/documentation/testing ground for Leap-Pangeo Data Library Feedstocks. A "feedstock" is a code repository containing a [Pangeo Forge recipe](https://pangeo-forge.readthedocs.io/en/latest/deployment/feedstocks.html) alongside associated metadata. There are typically three key folders to understand, in order of importance: 
+# WIP LEAP Template Feedstock
+This repository serves as template/documentation/testing ground for Leap-Pangeo Data Library Feedstocks. This fork is an attempt to make ingestion easier and more accessible by improving the instructions. 
+
+A "feedstock" is a code repository containing a [Pangeo Forge recipe](https://pangeo-forge.readthedocs.io/en/latest/deployment/feedstocks.html) alongside associated metadata. There are typically three key folders to understand, in order of importance: 
 1. /feedstock - contains the core logic, often defined in recipe.py. Also includes a meta.yaml file that serves as a unique id (especially useful if you bundle together multiple in one repo), requirements.txt to define dependencies, and a LEAP-specific catalog.yaml used for metadata by the LEAP data catalog. More info [here](https://pangeo-forge.readthedocs.io/en/latest/deployment/feedstocks.html).
 2. /.github - configuration directory for [Github Actions](https://github.com/features/actions), a software production workflow that makes it really easy to actually deploy code bases hosted in repositories. The yaml workflow files each define a unique Github Action
 3. /configs - information useful for deployment. Recipes can be run locally on your machine, from the leap jupyterhub, or Google Dataflow when ready for production. 
