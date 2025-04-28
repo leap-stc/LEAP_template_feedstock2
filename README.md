@@ -1,5 +1,5 @@
-# LEAP Template Feedstock
-This repository serves as template/documentation/testing ground for Leap-Pangeo Data Library Feedstocks.
+# WIP LEAP Template Feedstock
+This repository serves as template/documentation/testing ground for Leap-Pangeo Data Library Feedstocks. This fork is an attempt to make ingestion easier and more accessible by improving the instructions. 
 
 ## Setup
 Every dataset that is part of the LEAP-Pangeo Data Library is represented by a repository. You can easily create one by following the instructions below.
