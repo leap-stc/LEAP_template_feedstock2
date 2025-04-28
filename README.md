@@ -1,5 +1,8 @@
 # LEAP Template Feedstock
-This repository serves as template/documentation/testing ground for Leap-Pangeo Data Library Feedstocks.
+This repository serves as template/documentation/testing ground for Leap-Pangeo Data Library Feedstocks. A "feedstock" is a code repository containing a [Pangeo Forge recipe](https://pangeo-forge.readthedocs.io/en/latest/deployment/feedstocks.html) alongside associated metadata. There are typically three key folders to understand, in order of importance: 
+1. /feedstock - contains the core logic, often defined in recipe.py. Also includes a meta.yaml file that serves as a unique id (especially useful if you bundle together multiple in one repo), requirements.txt to define dependencies, and a LEAP-specific catalog.yaml used for metadata by the LEAP data catalog. More info [here](https://pangeo-forge.readthedocs.io/en/latest/deployment/feedstocks.html).
+2. /.github - configuration directory for [Github Actions](https://github.com/features/actions), a software production workflow that makes it really easy to actually deploy code bases hosted in repositories. The yaml workflow files each define a unique Github Action
+3. /configs - information useful for deployment. Recipes can be run locally on your machine, from the leap jupyterhub, or Google Dataflow when ready for production. 
 
 ## Setup
 Every dataset that is part of the LEAP-Pangeo Data Library is represented by a repository. You can easily create one by following the instructions below.
@@ -35,7 +38,6 @@ If you want to transform your dataset from e.g. a bunch of netcdf files into a z
 
 To link an existing dataset all you need to do is to modify `'feedstock/meta.yaml'` and `'feedstock/catalog.yaml'`. Enter the information about the dataset in `'feedstock/meta.yaml'` and then add corresponding entries (the `'id'` parameter has to match) in `'feedstock/catalog.yaml'`, where the url can point to any publically available cloud storage.
 
-<details>
 <summary> Example from the [`arco-era5_feedstock](https://github.com/leap-stc/arco-era5_feedstock): </summary>
 
 `meta.yaml`
@@ -100,20 +102,17 @@ stores:
     url: "'gs://gcp-public-data-arco-era5/ar/model-level-1h-0p25deg.zarr-v1'"
 ```
 
-</details>
-
-</details>
-
-<details>
-<summary>
-
-#### Build a Pangeo-Forge Recipe
-
 </summary>
+</details>
 
-##### Build and test your recipe locally on the LEAP-Pangeo Jupyterhub
 
-- Edit the `feedstock/recipe.py` to build your pangeo-forge recipe. If you are new to pangeo-forge, [the docs](https://pangeo-forge.readthedocs.io/en/latest/composition/index.html#overview) are a great starting point
+## Build a Pangeo-Forge Recipe
+
+If you are new to pangeo-forge, [the docs](https://pangeo-forge.readthedocs.io/en/latest/composition/index.html#overview) are a great starting point. Broadly, there are three key folders in a feedstock
+
+#### Build and test your recipe locally on the LEAP-Pangeo Jupyterhub
+
+- Edit the `feedstock/recipe.py` to build your pangeo-forge recipe. Directions found [here](https://pangeo-forge.readthedocs.io/en/latest/composition/index.html).
 - Make sure to also edit the other files in the `/feedstock/` directory. More info on feedstock structure can be found [here](https://pangeo-forge.readthedocs.io/en/latest/deployment/feedstocks.html#meta-yaml)
 - 🚨 You should not have to modify any of the files outside the `feedstock` folder (and this README)! If you run into a situation where you think changes are needed, please open an issue and tag @leap-stc/data-and-compute.
 

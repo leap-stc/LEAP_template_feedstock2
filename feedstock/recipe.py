@@ -14,6 +14,7 @@ from pangeo_forge_recipes.transforms import (
     OpenWithXarray,
     StoreToZarr,
 )
+import xarray as xr
 
 # parse the catalog store locations (this is where the data is copied to after successful write (and maybe testing)
 catalog_store_urls = get_catalog_store_urls('feedstock/catalog.yaml')
@@ -30,6 +31,17 @@ input_urls_a = [
 
 
 file_pattern = pattern_from_file_sequence(input_urls_a, concat_dim='time')
+
+class Proprocess(beam.PTransform):
+    @staticmethod
+    def _process_func(ds: xr.Dataset) -> xr.Dataset:
+        # add any processing logic here
+        return ds
+
+    def expand(self, pcoll: beam.PCollection) -> beam.PCollection:
+        return pcoll | "open and process file" >> beam.MapTuple(
+            lambda k, v: (k, self._process_func(v))
+        )
 
 
 small = (
