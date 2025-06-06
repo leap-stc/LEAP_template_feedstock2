@@ -24,15 +24,24 @@ catalog_store_urls = get_catalog_store_urls('feedstock/catalog.yaml')
 ###########################
 
 ## Monthly version
+
+base_url = "https://www.ncei.noaa.gov/data/global-precipitation-climatology-project-gpcp-monthly/access/"
+def make_url(year, month):
+    filename = 
+    return os.path.join(base_url, str(year), f"gpcp_v02r03_monthly_d{year}{month:02d}_c{year}{month:02d}.nc")
+
 input_urls_a = [
     'gs://cmip6/pgf-debugging/hanging_bug/file_a.nc',
     'gs://cmip6/pgf-debugging/hanging_bug/file_b.nc',
 ]
 
+gpcp_v02r03_monthly_d202401_c20240407.nc
+
+
 
 file_pattern = pattern_from_file_sequence(input_urls_a, concat_dim='time')
 
-class Proprocess(beam.PTransform):
+class Preprocess(beam.PTransform):
     @staticmethod
     def _process_func(ds: xr.Dataset) -> xr.Dataset:
         # add any processing logic here
